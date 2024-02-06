@@ -1,0 +1,21 @@
+.navbarContainer {
+    margin-top: 10;
+    display: flex;
+    background-color: aqua;
+    height: 10vh;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 50px;
+    color: white;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.link{
+    text-decoration: none;
+    margin-right: 20px;
+}
