@@ -15,6 +15,9 @@ function GetUser() {
     const updateUser = (id)=>{
         navigate({pathname:`/updateUser/${id}`, id})
     }
+    const showUser = (id)=>{
+        navigate({pathname:`/getUser/${id}`, id})
+    }
     return (
         <div className='getUsersContainer'>
             <h2>Liste des Utilisateur</h2>
@@ -37,12 +40,18 @@ function GetUser() {
                             return (
                                 <tbody key={index}>
                                     <tr>
-                                        <td>{item.username}</td>
+                                        <td style={{
+                                            cursor:'pointer'
+                                        }}
+                                        onClick={()=>showUser(item.id)}
+                                        >{item.username}</td>
                                         <td>{item.phone}</td>
                                         <td>{item.email}</td>
                                         <td>{item.pays}</td>
                                         <td>{item.ville}</td>
-                                        <td>{item.assurance}</td>
+                                        <td style={{
+                                            backgroundColor : item.assurance ? '' : 'red'
+                                        }} >{item.assurance}</td>
                                         <td>
                                             <button onClick={()=> deleteUser(item.id)}>supprimer</button>
                                             <button onClick={()=>updateUser(item.id)}>modifier</button>

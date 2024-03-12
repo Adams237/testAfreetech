@@ -8,16 +8,16 @@ function UpdateUser() {
     const { userId } = useParams()
     const navigate = useNavigate()
     const allUsers = localStorage.getItem('INTIA') ? [...JSON.parse(localStorage.getItem('INTIA'))] : []
-    console.log(allUsers);
     const [user, setUser] = useState({})
-    console.log(userId);
     const getUsr = () => {
+        // eslint-disable-next-line eqeqeq
         const currentUser = allUsers.find((item) => item.id == userId)
         setUser(currentUser)
     }
     useEffect(() => {
         getUsr()
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [allUsers.length])
     const handleChange = (e)=>{
         setUser({
@@ -26,10 +26,11 @@ function UpdateUser() {
     }
     const handleSubmit =(e)=>{
         e.preventDefault()
-        let newArr=allUsers.filter((item)=> item.id != userId ) 
+        // eslint-disable-next-line eqeqeq
+        let index=allUsers.findIndex((item)=> item.id == userId ) 
         // console.log(newArr);
-        newArr.push(user)
-        const userSet = JSON.stringify(newArr)
+        allUsers[index] = user
+        const userSet = JSON.stringify(allUsers)
         localStorage.setItem('INTIA', userSet)
         navigate({pathname:`/getUsers`})
         alert("modification réussit")

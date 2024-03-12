@@ -3,11 +3,20 @@ import React, { useState } from 'react'
 
 function GetAssurances() {
     const allAssurance = localStorage.getItem('INTIAASSURANCE') ? [...JSON.parse(localStorage.getItem('INTIAASSURANCE'))] : []
+    const allUsers = localStorage.getItem('INTIA') ? [...JSON.parse(localStorage.getItem('INTIA'))] : []
     // const navigate= useNavigate()
     const [ assurances, setAssurances ] = useState(allAssurance)
     const deleteAssurance = (name)=>{
         let newArr=assurances.filter((item)=> item.name !== name ) 
         setAssurances(newArr);
+        for(let i = 0; i < allUsers.length; i++){
+            if(allUsers[i].assurance === name){
+                allUsers[i].assurance = ''
+            }
+        }
+        // console.log(allUsers);
+        const userSet = JSON.stringify(allUsers)
+        localStorage.setItem('INTIA', userSet)
         const assurSet = JSON.stringify(newArr)
         localStorage.setItem('INTIAASSURANCE', assurSet)
         alert("Deleted Successfully")

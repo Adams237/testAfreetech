@@ -74,7 +74,12 @@ function CreateUser() {
                     Ajouter 
                 </button>
             </form>:
-            ('aucune Assurance disponible pour le moment')
+            <div style={{
+                fontSize: 'larger',
+                fontWeight:'bold',
+                color: 'red',
+                textAlign: 'center'
+            }}>Aucune Assurance disponible pour le moment!<br/> Pour ajouter un utilisateur il faut au moins créer une assurance </div>
             }
             
         </div>
