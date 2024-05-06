@@ -7,6 +7,7 @@ export const studentSlice = createSlice({
     },
     reducers:{
         createStude(state, action){
+            state.value=[]
             state.value.push(action.payload)
         }
     }

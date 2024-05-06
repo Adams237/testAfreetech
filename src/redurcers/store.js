@@ -1,8 +1,8 @@
-import { configureStore, combineReducers, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import studentSlice from './studentSlice';
 // import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' 
-import { persistReducer, PURGE, REGISTER, REHYDRATE, FLUSH, PAUSE, PERSIST, persistStore } from 'redux-persist';
+import { persistReducer, persistStore } from 'redux-persist';
 
 const routeRedurcer = combineReducers({
     student : studentSlice,

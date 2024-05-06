@@ -1,20 +1,21 @@
 import React from 'react'
-import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 
-import './inscription.css'
 import Modale from '../components/Modal/Modal'
-function Inscription() {
-    const [isOpen, setIsOpen] = useState(false)
+
+import "./pension.css"
+import { useState } from 'react';
+function Pension() {
     const [user, setUser] = useState({})
+    const [isOpen, setIsOpen] = useState(false)
     const handleChange = (e)=>{
-        setUser({
-           ...user, [e.target.name]: e.target.value
-        })
+       setUser({
+         ...user, [e.target.name]: e.target.value
+       })
     }
     const isValidate = ()=>{
-        if(!user.name || !user.school || !user.niveau ||  !user.phone || !user.cni || !user.montant ){
-            return "remplir tous les champs ayant  une etoile rouge"
+        if(!user.name || !user.school || !user.niveau ||  !user.phone || !user.cni || !user.montant || !user.tranche ){
+            return "remplir tous les champs avec  une etoile rouge"
         }
         if(user.nom){
 
@@ -30,49 +31,55 @@ function Inscription() {
             toast.error(valide)
         }
     }
-    return (
-        <div>
+  return (
+    <div>
             <div className="containerInscription">
-                <h2>Inscription</h2>
+                <h2>Payer la pension</h2>
                 <div className='containerInput'>
                     <div className='inputItem' style={{ marginTop: "30px" }}>
                         <label htmlFor="nom">Nom Complet <span>*</span> </label>
-                        <input placeholder="Enter your text..." className="input" name="name" onChange={(e)=>handleChange(e)} type="text" />
+                        <input placeholder="Entrer votre texte..." className="input" name="name" onChange={(e)=>handleChange(e)} type="text" />
                     </div>
                     <div className='inputItem' style={{ marginTop: "30px" }}>
                         <label htmlFor="ecole">Ecole <span>*</span>  </label>
-                        <input placeholder="Enter your text..." className="input" name="school" onChange={(e)=>handleChange(e)} type="text" />
+                        <input placeholder="Entrer votre texte..." className="input" name="school" onChange={(e)=>handleChange(e)} type="text" />
                     </div>
 
                 </div>
                 <div className='containerInput'>
                     <div className='inputItem'>
                         <label htmlFor="classw">classe/Niveau <span>*</span></label>
-                        <input placeholder="Enter your text..." className="input" name="niveau" onChange={(e)=>handleChange(e)} type="text" />
+                        <input placeholder="Entrer votre texte..." className="input" name="niveau" onChange={(e)=>handleChange(e)} type="text" />
                     </div>
                     <div className='inputItem'>
                         <label htmlFor="ecole">Nom du parent/tuteur  </label>
-                        <input placeholder="Enter your text..." className="input" name="parent" onChange={(e)=>handleChange(e)} type="text" />
+                        <input placeholder="Entrer votre texte..." className="input" name="parent" onChange={(e)=>handleChange(e)} type="text" />
                     </div>
                 </div>
                 <div className='containerInput'>
                     <div className='inputItem'>
                         <label htmlFor="classw">N° de téléphone portable <span>*</span> </label>
-                        <input placeholder="Enter your text..." className="input" name="phone" onChange={(e)=>handleChange(e)} type="text" />
+                        <input placeholder="Entrer votre texte..." className="input" name="phone" onChange={(e)=>handleChange(e)} type="text" />
                     </div>
                     <div className='inputItem'>
                         <label htmlFor="ecole">N° de cni <span>*</span> </label>
-                        <input placeholder="Enter your text..." className="input" name="cni" onChange={(e)=>handleChange(e)} type="text" />
+                        <input placeholder="Entrer votre texte..." className="input" name="cni" onChange={(e)=>handleChange(e)} type="text" />
                     </div>
                 </div>
                 <div className='containerInput'>
                     <div className='inputItem'>
                         <label htmlFor="classw">Montant a payer  <span>*</span></label>
-                        <input placeholder="Enter your text..." className="input" name="montant" onChange={(e)=>handleChange(e)} type="text" />
+                        <input placeholder="Entrer votre texte..." className="input" name="montant" onChange={(e)=>handleChange(e)} type="text" />
                     </div>
                     <div className='inputItem'>
                         <label htmlFor="ecole">N° de matricule  </label>
-                        <input placeholder="Enter your text..." className="input" name="matricule" onChange={(e)=>handleChange(e)} type="text" />
+                        <input placeholder="Entrer votre texte..." className="input" name="matricule" onChange={(e)=>handleChange(e)} type="text" />
+                    </div>
+                </div>
+                <div className='containerInput'>
+                    <div className='inputItem'>
+                        <label htmlFor="classw">Tranche  <span>*</span></label>
+                        <input placeholder="Entrer votre texte..." className="input" name="tranche" onChange={(e)=>handleChange(e)} type="text" />
                     </div>
                 </div>
                 <button className="animated-button" onClick={handleSubmit}>
@@ -98,7 +105,7 @@ function Inscription() {
                 newestOnTop={false}/>
             {isOpen && <Modale isOpen={isOpen} setIsOpen={setIsOpen} user={user} setUser={setUser}/>}
         </div>
-    )
+  )
 }
 
-export default Inscription
+export default Pension

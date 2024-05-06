@@ -1,0 +1,39 @@
+ .main_container{
+    width: (100% - 200px);
+    margin-top: 65px;
+    /* margin-left: 200px; */
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+  
+ 
+
+  .wrapper.collapse .main_container{
+    width: (100% - 20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* margin-left: 70px; */
+  }
+
+  @media screen and (max-width: 900px) {
+    .wrapper .sidebar{
+        display: flex;
+        flex-direction: column;
+    }
+    .wrapper .top_navbar .top_menu ul{
+        display: none;
+    }
+    .wrapper .main_container{
+        margin-left: 200px;
+    }
+    .wrapper.collapse .main_container{
+        margin-left: 70px;
+    }
+    .wrapper .top_navbar .hamburger{
+        display: block;
+    }
+  }

@@ -1,0 +1,74 @@
+.modalContainer{
+  width: 80%;
+  height: 60vh;
+  /* display: flex; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.modalContainer .modalHader{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.modalConteint{
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  justify-content: center;
+}
+
+.modalConteint div{
+  cursor: pointer;
+  margin: 10px;
+}
+.btnConteint{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn {
+  background-color: #007222;
+  padding: 14px 40px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  margin-right: 50px;
+  border-radius: 10px;
+  border: 2px dashed #007222;
+  width: 200px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: .4s;
+ }
+ 
+ .btn span:last-child {
+  display: none;
+ }
+ 
+ .btn:hover {
+  transition: .4s;
+  border: 2px dashed #007222;
+  background-color: #fff;
+  color: #007222;
+ }
+ 
+ .btn:active {
+  background-color: #87dbd0;
+ }
+ 
+ @media screen and (max-width: 900px) {
+  .modalContainer{
+    width: 70%;
+    height: 80vh;
+ 
+  }
+  .modalConteint{
+    flex-direction: column;   
+    align-items: center; 
+  }
+}
+ 

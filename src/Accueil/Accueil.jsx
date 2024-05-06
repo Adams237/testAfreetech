@@ -1,122 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './accueil.css'
-import { useNavigate } from 'react-router-dom'
-import Loading from '../loading/Loading'
-import { useSelector } from 'react-redux'
-import axios from 'axios'
-import { getPesions, télécharger } from '../utils/api'
+
+import nfc from "../asset/nfc.jpg"
 function Accueil() {
-  const student = useSelector(state => state.student.value)
-  // console.log(student[0].id);
-  const [isLoading, setIsLoading] = useState(true)
-  const [pensions, setPension] = useState({})
-  const navigate = useNavigate()
-  console.log(student.length);
 
- 
-
-
-  // const changeScreen = (text) => {
-  //   navigate(text)
-  // }
-  const showPension = async () => {
-    if (student.length>0) {
-      try {
-        const { data } = await axios.post(getPesions, {
-          id: student[0].id
-        })
-        if (data.length) {
-          setPension(data)
-        }
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-
-  }
-  useEffect(() => {
-    showPension()
-  }, [student.length])
-  setTimeout(() => {
-    setIsLoading(false)
-  }, 2000)
-  if (isLoading) {
-    return <Loading />
-  }
-  if(student.length=== 0){
-    navigate('/student/inscription')
-    return
-  }
-  const downloadPdf = async (filname) => {
-    const sendFile = filname.replace('/storage/facture/', '')
-    console.log(sendFile);
-    const response = await axios.post(télécharger, {
-      filname: sendFile
-    }, {
-      responseType: 'arraybuffer'
-    });
-
-    // Convertir la réponse en fichier Blob
-    const blob = new Blob([response.data], { type: 'application/pdf' });
-
-    // Créer un lien de téléchargement et le déclencher
-    const link = document.createElement('a');
-    link.href = window.URL.createObjectURL(blob);
-    link.download = sendFile;
-    link.click();
-  };
   return (
-    <div className='getUsersContainer'>
-      <h2>Liste prix des pensions</h2>
-      <table style={{ width: '80vw' }}>
-        <thead>
-          <tr>
-            <th>N° tranche</th>
-            <th>Prix</th>
-            <th>Télécharger</th>
-          </tr>
-        </thead>
-        {
-          pensions.length ?
-            <tbody>
-              {
-                pensions.map((item, index) => {
-                  return <tr key={index}>
-                    <td >{item.tranche}</td>
-                    <td >{item.montant}</td>
-                    <td style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <button style={{ width: '50%' }} onClick={() => downloadPdf(item.facture)} >
-                        Télécharger
-                      </button>
-                    </td>
-                  </tr>
-                })
-              }
-            </tbody>
-            :
-
-            <tbody>
-              <td >test</td>
-              <td>50000 FCFA</td>
-              <td>test</td>
-              <tr>
-                <td >test</td>
-                <td>80000 FCFA</td>
-                <td>test</td>
-              </tr>
-              <tr>
-                <td >test</td>
-                <td>20000 FCFA</td>
-                <td>test</td>
-              </tr>
-            </tbody>
-        }
-
-      </table>
-
-    </div >
+    <div className='containerAccueil'>
+      <img src={nfc} alt="nfc" />
+      <div className="accueil">
+        <h1>Payer vos factures scolaires sans vous deplacer</h1>
+       <h2 style={{
+        color: 'black',
+        fontWeight: 'bold',
+        fontSize: '20px',
+        textAlign: 'center',
+        marginTop: '20px',
+        marginBottom: '20px',
+       }}>Simplifiez la vie scolaire avec notre application!</h2>
+       <p>  Fini les files d’attente interminables et les déplacements inutiles.
+            Avec notre application de paiement de facture scolaire en ligne,
+             vous pouvez régler toutes vos factures scolaires en un clic, où que vous soyez et à tout moment.
+              Plus de stress, plus de retard, juste la tranquillité d’esprit. 
+              Rejoignez-nous aujourd’hui et découvrez une nouvelle façon de gérer les frais scolaires.
+           Parce que chez nous, nous croyons que l’éducation mérite simplicité et efficacité</p>
+      </div>
+    </div>
   )
 }
 

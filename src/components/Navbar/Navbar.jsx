@@ -9,7 +9,7 @@ function Navbar() {
   return (
     <div className='navbarContainer'>
       <Link to="/" className='logo'>
-        INTIA
+        NFCBANK
       </Link>
       <div className='link' >
 

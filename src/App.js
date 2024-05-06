@@ -1,17 +1,13 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./Home";
-import CreateUser from "./CreateUser/CreateUser";
-import GetUser from "./getUsers/GetUser";
-import UpdateUser from "./updateUser/UpdateUser";
-import CreateAssurance from "./CreateAssurance/CreateAssurance";
-import GetAssurances from "./getAssurances/GetAssurances";
 import Accueil from "./Accueil/Accueil";
-import GetOneUser from "./getUser/GetOneUser";
-import Inscription from "./Inscription/Inscription";
 import { Provider } from "react-redux";
 import { store } from "./redurcers/store";
-import Pensions from "./Pensions/Pensions";
-import ShowStudents from "./admin/showStudent/ShowStudents";
+import Auth from "./auth/Auth";
+import Home from "./Home/Home";
+import Inscription from "./Inscription/Inscription";
+import 'react-toastify/dist/ReactToastify.css';
+import Pension from "./Pension/Pension";
+import Tables from "./Tables/Tables";
 
 function App() {
   const router = createBrowserRouter([
@@ -24,43 +20,24 @@ function App() {
           element: <Accueil />
         },
         {
-          path: '/addUser',
-          element: <CreateUser />
+          path:"inscription",
+          element: <Inscription />
         },
         {
-          path: '/getUsers',
-          element: <GetUser />
+          path:'pension',
+          element: <Pension/>
         },
         {
-          path: '/updateUser/:userId',
-          element: <UpdateUser />
-        },
-        {
-          path: '/createAssurance',
-          element: <CreateAssurance />
-        },
-        {
-          path: '/getAssur',
-          element: <GetAssurances />
-        },
-        {
-          path: '/getUser/:userId',
-          element: <GetOneUser />
-        },
-       {
-        path:'/pension',
-        element: <Pensions/>
-       },
-       {
-        path:'showStudents',
-        element:<ShowStudents/>
-       }
+          path:"facture",
+          element:<Tables/>
+        }
+        
       ],
       
     },
     {
-      path: '/student/inscription',
-      element: <Inscription />
+      path: '/auth',
+      element: <Auth />
     }
   ])
   return (
