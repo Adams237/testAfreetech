@@ -13,6 +13,7 @@ function Home() {
       console.log('ici');
       navigate('/auth')
     }
+     //eslint-disable-next-line 
   }, [student])
   const wrapperRef = useRef()
   return (
