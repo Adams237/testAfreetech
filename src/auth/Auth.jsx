@@ -5,13 +5,16 @@ import {useNavigate} from "react-router-dom"
 
 import "./auth.css"
 import { useState } from 'react'
-import { authUser } from '../utils/api'
 import { createStude } from '../redurcers/studentSlice'
+import { ToastContainer, toast } from 'react-toastify'
+import Loader from '../Loader/Loader'
+import { authUser } from '../utils/api'
 
 function Auth() {
     const navigate = useNavigate()
     const student = useSelector(state => state.student.value)
     const [user, setUser] = useState({})
+    const [isLoader, setIsLoader] = useState(false)
     const dispatch = useDispatch()
 
     const handleChange = (e) => {
@@ -28,9 +31,24 @@ function Auth() {
         }
     //eslint-disable-next-line 
     }, [student])
-    console.log(authUser);
 
     const sendMail = async () => {
+        setIsLoader(true)
+        if(!user.email || !user.phone ){
+            toast.error("remplir tous les champs")
+            setIsLoader(false)
+            return
+        }
+        if(!user.email.includes("@")){
+            toast.error("email incorrect")
+            setIsLoader(false)
+            return
+        }
+        if(user.phone.length !== 9 && user.phone.length !==12){
+            toast.error("numero incorrect")
+            setIsLoader(false)
+            return
+        }
         try {
             const { data } = await axios.post(authUser, {
                 email: user.email,
@@ -39,10 +57,13 @@ function Auth() {
             })
             console.log(data);
             dispatch(createStude(data))
+            setIsLoader(false)
         } catch (error) {
             console.log(error);
+            toast.error("une erreur est survenu veillez ressayer")
+            setIsLoader(false)
         }
-
+        setIsLoader(false)
 
     }
 
@@ -69,8 +90,16 @@ function Auth() {
                 </div>
 
 
-                <button id="button" onClick={sendMail}>Submit</button>
+                <button disabled={isLoader} id="button" onClick={sendMail}>
+                    { isLoader ? <Loader/>:
+                    ("Submit")}
+                    </button>
             </div>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}/>
         </div>
 
 

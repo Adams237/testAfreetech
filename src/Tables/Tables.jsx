@@ -7,10 +7,18 @@ import { useSelector } from 'react-redux'
 import axios from 'axios'
 import { download, getFactures } from '../utils/api'
 import Loader from '../Loader/Loader'
+import { useTranslation } from 'react-i18next'
 function Tables() {
     const student = useSelector(state => state.student.value)
+    const language = useSelector(state=>state.language)
     const [factures, setFactures] = useState([])
     const [isLoader, setIsLoader] = useState(true)
+    const {i18n, t} = useTranslation()
+
+    useEffect(()=>{
+        i18n.changeLanguage(language)
+    // eslint-disable-next-line
+    },[])
 
     const showFacture = async () => {
         try {
@@ -54,18 +62,18 @@ function Tables() {
     }
     return (
         <div className='containerTable'>
-            <h2>Liste des facture</h2>
+            <h2>{t("listFacture")}</h2>
             {
                 isLoader ? <Loader /> :
                     <table border="1">
                         <thead>
                             <tr>
-                                <th>Nom</th>
-                                <th>Niveau/classe</th>
-                                <th>ecole</th>
-                                <th>N° telephone</th>
-                                <th>Montant</th>
-                                <th>Tranche</th>
+                                <th>{t("nom")}</th>
+                                <th> {t("niveau")} </th>
+                                <th> {t("ecole")} </th>
+                                <th> {t("phone")} </th>
+                                <th>{t("montant")}</th>
+                                <th> {t("slice")} </th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -82,7 +90,7 @@ function Tables() {
                                         <td>{facture.tranche}</td>
                                         {
                                             facture.path ? <td>
-                                                <button onClick={() => telecharger(facture.path)}>Télécharger</button>
+                                                <button onClick={() => telecharger(facture.path)}> {t("download")} </button>
                                             </td> : <td></td>
                                         }
 

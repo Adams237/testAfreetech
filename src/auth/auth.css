@@ -122,5 +122,11 @@
     padding: 8px 15px;
     border-radius: 20px;
   }
+
+  @media screen and (max-width: 900px) {
+    .authTexte{
+      display: none;
+    }
+  }
   
   

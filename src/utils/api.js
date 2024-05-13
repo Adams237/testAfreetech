@@ -1,4 +1,5 @@
-const URL = "http://localhost:5000"
+// const URL = "http://localhost:5000"
+const URL = "https://bobuykbackend.onrender.com"
 
 export const authUser = `${URL}/user/auth`
 export const inscription = `${URL}/user/inscription`
