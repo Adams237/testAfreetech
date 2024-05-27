@@ -45,6 +45,7 @@ function App() {
       element: <Auth />
     }
   ])
+ 
   return (
     <div className="App">
       <Provider store={store}>

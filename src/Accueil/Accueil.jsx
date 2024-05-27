@@ -14,6 +14,8 @@ function Accueil() {
   // eslint-disable-next-line
   },[])
 
+ 
+
   return (
     <div className='containerAccueil'>
       <img src={nfc} alt="nfc" />

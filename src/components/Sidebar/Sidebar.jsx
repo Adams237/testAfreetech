@@ -10,11 +10,13 @@ import { useEffect } from 'react';
 
 function Sidebar({ wrapperRef }) {
     const language = useSelector(state => state.student.language)
-    const currentUser = useSelector(state=>state.student.value[0])
+    const currentUser = useSelector(state => state.student.value[0])
     console.log(currentUser)
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { i18n, t } = useTranslation()
+
+
     const changLanguage = () => {
         const newLanguage = language === 'fr' ? 'en' : 'fr'
         i18n.changeLanguage(newLanguage)
@@ -50,7 +52,7 @@ function Sidebar({ wrapperRef }) {
                         <Link to="/" className="logo">
                             GoBuyK Pay
                         </Link>
-                        <ul>
+                        {currentUser && <ul>
                             <li><Link to="/inscription">
                                 {t("inscription")}
                             </Link></li>
@@ -60,12 +62,12 @@ function Sidebar({ wrapperRef }) {
                             <li><Link to="/facture">
                                 {t("factures")}
                             </Link></li>
-                           {currentUser.role === 1 && <li><Link to="/ecole">
+                            {currentUser.role === 1 && <li><Link to="/ecole">
                                 {t("school")}
                             </Link></li>}
 
 
-                        </ul>
+                        </ul>}
 
                         <div className='button'>
                             <select style={{
@@ -92,7 +94,7 @@ function Sidebar({ wrapperRef }) {
                 </div>
 
                 <div className="sidebar">
-                    <ul>
+                    {currentUser && <ul>
                         <li><Link to="/inscription">
                             <span className="icon"><FaSchool /></span>
                             <span className="title"> {t("inscription")}</span>
@@ -105,11 +107,11 @@ function Sidebar({ wrapperRef }) {
                             <span className="icon"><FaNewspaper /></span>
                             <span className="title">{t("factures")}</span>
                         </Link></li>
-                      {currentUser.role === 1 &&  <li><Link to="/ecole" >
+                        {currentUser.role === 1 && <li><Link to="/ecole" >
                             <span className="icon"><FaSchool /></span>
                             <span className="title">{t("school")}</span>
                         </Link></li>}
-                    </ul>
+                    </ul>}
                 </div>
             </div>
         </div>
