@@ -70,7 +70,7 @@ function Auth() {
     return (
         <div className='authConatiner'>
             <div className='authTexte'>
-                <h2>NFC BANK && GOBUYK</h2>
+                <h2> GoBuyK</h2>
                 <p>Payer vos facture a la nfc banque en toute securite</p>
             </div>
             <div action="" className="form_main" >

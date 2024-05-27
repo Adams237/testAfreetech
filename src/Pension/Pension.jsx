@@ -8,88 +8,125 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
+import { getSchools } from '../utils/api';
+import axios from 'axios';
 function Pension() {
     const [user, setUser] = useState({})
     const [isOpen, setIsOpen] = useState(false)
+    const [school, setSchool] = useState([])
+    const [loading, setLoading] = useState(true)
     const language = useSelector(state => state.student.language)
-    const {i18n, t} = useTranslation()
+    const { i18n, t } = useTranslation()
 
-    useEffect(()=>{
-        i18n.changeLanguage(language)
-    // eslint-disable-next-line
-    },[])
-    const handleChange = (e)=>{
-       setUser({
-         ...user, [e.target.name]: e.target.value
-       })
+    const updateSchool = async () => {
+        try {
+            const { data } = await axios.get(getSchools)
+            setSchool(data)
+            setLoading(false)
+        } catch (error) {
+            console.log(error)
+            setLoading(false)
+        }
     }
-    const isValidate = ()=>{
-        if(!user.name || !user.school || !user.niveau ||  !user.phone || !user.cni || !user.montant || !user.tranche ){
+
+    useEffect(() => {
+        updateSchool()
+    }, [])
+
+    useEffect(() => {
+        i18n.changeLanguage(language)
+        // eslint-disable-next-line
+    }, [])
+    const handleChange = (e) => {
+        if(e.target.name === "school"){
+            const montant = school.find(item=>item.schoolName === e.target.value)
+            setUser({
+                ...user,
+                [e.target.name]:e.target.value,
+                montant:montant.pensionTotal/montant.nombreTranche
+            })
+            return
+        }
+        setUser({
+            ...user, [e.target.name]: e.target.value
+        })
+    }
+    const isValidate = () => {
+        if (!user.name || !user.school || !user.niveau || !user.phone || !user.cni || !user.montant || !user.tranche) {
             return t("errorInscription")
         }
-        if(user.nom){
+        if (user.nom) {
 
         }
         return true
     }
-    const handleSubmit = ()=>{
+    const handleSubmit = () => {
         const valide = isValidate()
-        if(valide === true){
+        if (valide === true) {
             setIsOpen(true)
         }
-        else{
+        else {
             toast.error(valide)
         }
     }
-  return (
-    <div>
+    return (
+        <div>
             <div className="containerInscription">
                 <h2>{t("payePension")}</h2>
                 <div className='containerInput'>
                     <div className='inputItem' style={{ marginTop: "30px" }}>
                         <label htmlFor="nom">{t("nom")} <span>*</span> </label>
-                        <input placeholder="Entrer votre texte..." className="input" name="name" onChange={(e)=>handleChange(e)} type="text" />
+                        <input placeholder="Entrer votre texte..." className="input" name="name" onChange={(e) => handleChange(e)} type="text" />
                     </div>
                     <div className='inputItem' style={{ marginTop: "30px" }}>
                         <label htmlFor="ecole">{t("nom")} <span>*</span>  </label>
-                        <input placeholder="Entrer votre texte..." className="input" name="school" onChange={(e)=>handleChange(e)} type="text" />
+                        <select className="input" name="school" onChange={(e) => handleChange(e)} type="text">
+                            {
+
+                                school.map((item, index) => {
+                                    return (
+                                        <option key={index} value={item.schoolName}>{item.schoolName}</option>
+                                    )
+                                })
+                            }
+                        </select>
                     </div>
 
                 </div>
                 <div className='containerInput'>
                     <div className='inputItem'>
                         <label htmlFor="classw">{t("niveau")} <span>*</span></label>
-                        <input placeholder="Entrer votre texte..." className="input" name="niveau" onChange={(e)=>handleChange(e)} type="text" />
+                        <input placeholder="Entrer votre texte..." className="input" name="niveau" onChange={(e) => handleChange(e)} type="text" />
                     </div>
                     <div className='inputItem'>
                         <label htmlFor="ecole">{t("parent")}  </label>
-                        <input placeholder="Entrer votre texte..." className="input" name="parent" onChange={(e)=>handleChange(e)} type="text" />
+                        <input placeholder="Entrer votre texte..." className="input" name="parent" onChange={(e) => handleChange(e)} type="text" />
                     </div>
                 </div>
                 <div className='containerInput'>
                     <div className='inputItem'>
                         <label htmlFor="classw">{t("phone")} <span>*</span> </label>
-                        <input placeholder="Entrer votre texte..." className="input" name="phone" onChange={(e)=>handleChange(e)} type="text" />
+                        <input placeholder="Entrer votre texte..." className="input" name="phone" onChange={(e) => handleChange(e)} type="text" />
                     </div>
                     <div className='inputItem'>
                         <label htmlFor="ecole">{t("cni")} <span>*</span> </label>
-                        <input placeholder="Entrer votre texte..." className="input" name="cni" onChange={(e)=>handleChange(e)} type="text" />
+                        <input placeholder="Entrer votre texte..." className="input" name="cni" onChange={(e) => handleChange(e)} type="text" />
                     </div>
                 </div>
                 <div className='containerInput'>
                     <div className='inputItem'>
                         <label htmlFor="classw">{t("paye")} <span>*</span></label>
-                        <input placeholder="Entrer votre texte..." className="input" name="montant" onChange={(e)=>handleChange(e)} type="text" />
+                        <input placeholder="Entrer votre texte..." className="input" name="montant" value={user.montant} type="number" />
                     </div>
                     <div className='inputItem'>
                         <label htmlFor="ecole">{t("matricule")}  </label>
-                        <input placeholder="Entrer votre texte..." className="input" name="matricule" onChange={(e)=>handleChange(e)} type="text" />
+                        <input placeholder="Entrer votre texte..." className="input" name="matricule" onChange={(e) => handleChange(e)} type="text" />
                     </div>
                 </div>
                 <div className='containerInput'>
                     <div className='inputItem'>
-                        <label htmlFor="classw">{t("slice")}  <span>*</span></label>
-                        <input placeholder="Entrer votre texte..." className="input" name="tranche" onChange={(e)=>handleChange(e)} type="text" />
+                        <label htmlFor="classw">{t("tracnhe")}  <span>*</span></label>
+                        <input placeholder="Entrer votre texte..." className="input" name="tranche" onChange={(e) => handleChange(e)} type="text" />
                     </div>
                 </div>
                 <button className="animated-button" onClick={handleSubmit}>
@@ -112,10 +149,10 @@ function Pension() {
                 position="top-center"
                 autoClose={5000}
                 hideProgressBar={false}
-                newestOnTop={false}/>
-            {isOpen && <Modale isOpen={isOpen} setIsOpen={setIsOpen} user={user} setUser={setUser}/>}
+                newestOnTop={false} />
+            {isOpen && <Modale isOpen={isOpen} setIsOpen={setIsOpen} user={user} setUser={setUser} />}
         </div>
-  )
+    )
 }
 
 export default Pension

@@ -2,7 +2,7 @@ import React from 'react'
 
 import "./sidebar.css"
 import { Link, useNavigate } from 'react-router-dom';
-import { FaBlenderPhone, FaNewspaper, FaSchool } from 'react-icons/fa';
+import { FaNewspaper, FaSchool } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { deconecter, updateLanguage } from '../../redurcers/studentSlice';
@@ -10,6 +10,8 @@ import { useEffect } from 'react';
 
 function Sidebar({ wrapperRef }) {
     const language = useSelector(state => state.student.language)
+    const currentUser = useSelector(state=>state.student.value[0])
+    console.log(currentUser)
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { i18n, t } = useTranslation()
@@ -46,7 +48,7 @@ function Sidebar({ wrapperRef }) {
                     </div>
                     <div className="top_menu">
                         <Link to="/" className="logo">
-                            NFC BANK && GOBUYK
+                            GoBuyK Pay
                         </Link>
                         <ul>
                             <li><Link to="/inscription">
@@ -58,6 +60,9 @@ function Sidebar({ wrapperRef }) {
                             <li><Link to="/facture">
                                 {t("factures")}
                             </Link></li>
+                           {currentUser.role === 1 && <li><Link to="/ecole">
+                                {t("school")}
+                            </Link></li>}
 
 
                         </ul>
@@ -100,10 +105,10 @@ function Sidebar({ wrapperRef }) {
                             <span className="icon"><FaNewspaper /></span>
                             <span className="title">{t("factures")}</span>
                         </Link></li>
-                        <li><Link href="#" className="active">
-                            <span className="icon"><FaBlenderPhone /></span>
-                            <span className="title">Nos contacter</span>
-                        </Link></li>
+                      {currentUser.role === 1 &&  <li><Link to="/ecole" >
+                            <span className="icon"><FaSchool /></span>
+                            <span className="title">{t("school")}</span>
+                        </Link></li>}
                     </ul>
                 </div>
             </div>

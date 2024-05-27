@@ -8,6 +8,7 @@ import Inscription from "./Inscription/Inscription";
 import 'react-toastify/dist/ReactToastify.css';
 import Pension from "./Pension/Pension";
 import Tables from "./Tables/Tables";
+import School from "./School/School";
 
 function App() {
   const router = createBrowserRouter([
@@ -30,6 +31,10 @@ function App() {
         {
           path:"facture",
           element:<Tables/>
+        },
+        {
+          path:"ecole",
+          element:<School/>
         }
         
       ],

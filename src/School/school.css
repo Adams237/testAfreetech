@@ -1,0 +1,145 @@
+.containerTable {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    align-items: center;
+    /* justify-content: center; */
+    background-color: white;
+    width: 70vw;
+    height: 80vh;
+    overflow-x : scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.containerTable h2 {
+    text-align: center;
+    margin-top: 20px;
+    text-decoration: underline;
+    margin-bottom: 20px;
+}
+
+.containerTable table {
+    width: 90%;
+    border-collapse: collapse;
+    border-spacing: 0;
+  
+}
+
+th {
+    background-color: #557CBA;
+}
+
+/* Alternance de couleur sur les lignes */
+tr:nth-child(even) {
+    background-color: #CED4E5;
+    height: 30px;
+    text-align: center;
+}
+
+tr:nth-child(odd) {
+    background-color: #E8EBF5;
+    height: 30px;
+    text-align: center;
+}
+.buttonContainer{
+    margin-top: 20px;
+    width: 90%;
+}
+.buttonContainer button{
+    height: 50px;
+    width: 100px;
+    background-color: transparent;
+    border-color: #007222;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.buttonContainer button:hover{
+    background-color: #007222;
+}
+
+.modalContainer{
+    width: 80%;
+    height: 60vh;
+    /* display: flex; */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .modalContainer .modalHader{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .modalConteint{
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    justify-content: center;
+  }
+  
+  .modalConteint div{
+    cursor: pointer;
+    margin: 10px;
+  }
+  .btnConteint{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .btn {
+    background-color: #007222;
+    padding: 14px 40px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    margin-right: 50px;
+    border-radius: 10px;
+    border: 2px dashed #007222;
+    width: 200px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: .4s;
+   }
+   
+   .btn span:last-child {
+    display: none;
+   }
+   
+   .btn:hover {
+    transition: .4s;
+    border: 2px dashed #007222;
+    background-color: #fff;
+    color: #007222;
+   }
+   
+   .btn:active {
+    background-color: #87dbd0;
+   }
+   
+   @media screen and (max-width: 900px) {
+    .modalContainer{
+      width: 70%;
+      height: 80vh;
+   
+    }
+    .modalConteint{
+      flex-direction: column;   
+      align-items: center; 
+    }
+  }
+   
+
+@media screen and (max-width: 900px){
+    .containerTable{
+        width: 100vw;
+        height: 80vh;
+    }
+    .containerTable table{
+        width: 100vw;
+        margin-left: auto;
+    }
+}

@@ -37,7 +37,16 @@ i18n.use(initReactI18next).init({
                 payePension:"Pay the pension",
                 listFacture:"List of invoices",
                 montant:"amount",
-                deconnexion:"Disconnect"
+                deconnexion:"Disconnect",
+                school:"School",
+                listSchool:"List Of Schools",
+                schoolName:"School's name",
+                numCarte:"Credit Card Number",
+                adress:"Address",
+                email:"Email",
+                add:"Add",
+                newShool:"Add a new school",
+                slice:"Number of slice"
             }
         },
         fr:{
@@ -68,7 +77,16 @@ i18n.use(initReactI18next).init({
                 download:"télécharger",
                 listFacture:"Liste des factures",
                 montant:"Montant",
-                deconnexion:"Deconnexion"
+                deconnexion:"Deconnexion",
+                school:"Ecole",
+                listSchool:"Liste des Ecoles",
+                schoolName:"Nom de l'école",
+                numCarte:"Numéro de Carte Bancaire",
+                adress:"Adresse",
+                email:"Email",
+                add:"Ajouter",
+                newShool:"Ajouter une nouvelle école",
+                slice:"Nombre de tranche"
             }
         }
     }
