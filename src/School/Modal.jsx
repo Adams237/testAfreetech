@@ -16,6 +16,7 @@ function Modale({ isOpen, setIsOpen }) {
 
     useEffect(() => {
         i18n.changeLanguage(language)
+        // eslint-disable-next-line
     }, [])
 
     const handleChange = (e) => {

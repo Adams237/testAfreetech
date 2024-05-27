@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { t } from 'i18next'
 import React from 'react'
 import { useState } from 'react'
 import { getSchools } from '../utils/api'
@@ -22,6 +21,7 @@ function School() {
 
     useEffect(()=>{
         i18n.changeLanguage(language)
+        // eslint-disable-next-line
     },[])
 
     const updateSchool = async ()=>{
