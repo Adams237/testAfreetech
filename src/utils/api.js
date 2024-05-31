@@ -1,11 +1,12 @@
-const URL = "http://localhost:5000"
-// const URL = "https://bobuykbackend.onrender.com"
+// const URL = "http://localhost:5000"
+const URL = "https://bobuykbackend.onrender.com"
 
 export const authUser = `${URL}/user/auth`
 export const inscription = `${URL}/user/inscription`
 export const pension = `${URL}/user/pension`
 export const getFactures = `${URL}/user/factures`
 export const download = `${URL}/user/download`
+export const create = `${URL}/user/signup`
 
 // export const ceateStudent = `${URL}/student/create`
 export const getSchools = `${URL}/school/schools`

@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Pension from "./Pension/Pension";
 import Tables from "./Tables/Tables";
 import School from "./School/School";
+import SignUP from "./auth/SignUP";
 
 function App() {
   const router = createBrowserRouter([
@@ -43,6 +44,10 @@ function App() {
     {
       path: '/auth',
       element: <Auth />
+    },
+    {
+      path:"/signup",
+      element:<SignUP/>
     }
   ])
  

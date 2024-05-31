@@ -46,7 +46,13 @@ i18n.use(initReactI18next).init({
                 email:"Email",
                 add:"Add",
                 newShool:"Add a new school",
-                slice:"Number of slice"
+                slice:"Number of slice",
+                createCompe:"Don't you have an account?",
+                errorRempli:"Please fill in all fields",
+                errorEmail:"incorrect email",
+                errorPassword:"Passwords don't match",
+                success:"Account to create with success"
+
             }
         },
         fr:{
@@ -86,7 +92,12 @@ i18n.use(initReactI18next).init({
                 email:"Email",
                 add:"Ajouter",
                 newShool:"Ajouter une nouvelle école",
-                slice:"Nombre de tranche"
+                slice:"Nombre de tranche",
+                createCompe:"N'avez vous pas de compte",
+                errorRempli:"Veuillez remplir tous les champs",
+                errorEmail:"Email incorrect",
+                errorPassword:"Les mots de passe ne correspondent",
+                success:"Compte créer avec success"
             }
         }
     }
